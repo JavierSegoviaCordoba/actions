@@ -61,7 +61,7 @@ runs:
       if: ${{ inputs.amend == 'true' }}
       shell: bash
       run: |
-        git commit --amend --no-edit
+        git commit --amend --author="GitHub Action <action@github.com>" --no-edit
 
     - name: ⤴️ git push
       if: ${{ inputs.push == 'true' && inputs.force != 'true' }}
