@@ -1,0 +1,76 @@
+name: 'Commit'
+
+description: 'Commit'
+
+inputs:
+  amend:
+    default: false
+    description: 'Amend commit'
+    required: false
+    type: boolean
+  message:
+    default: null
+    description: 'Commit message'
+    required: false
+    type: string
+  push:
+    default: false
+    description: 'Push changes'
+    required: false
+    type: boolean
+  force:
+    description: 'Force push changes'
+    required: false
+    default: false
+    type: boolean
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: ⏳ Checking inputs
+      if: ${{ (inputs.message != null || inputs.message != '') &&  inputs.amend == true }}
+      shell: bash
+      run: |
+        echo "Commit message must not be provided if amend is true"
+        exit 1
+
+    - name: 📐 git config
+      shell: bash
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+
+    - name: 🪞 gid diff
+      shell: bash
+      run: |
+        git diff
+
+    - name: ➕ gid add
+      shell: bash
+      run: |
+        git add .
+
+    - name: 💬 git commit
+      if: ${{ inputs.amend != true }}
+      shell: bash
+      run: |
+        git commit -m "${{ inputs.commit-message }}" -a
+
+    - name: 💬🔨 git commit --amend
+      if: ${{ inputs.amend == true }}
+      shell: bash
+      run: |
+        git commit --amend --no-edit
+
+    - name: ⤴️ git push
+      if: ${{ inputs.push == true && inputs.force != true }}
+      shell: bash
+      run: |
+        git push
+
+    - name: ⤴️🔨 git push --force
+      if: ${{ inputs.push == true && inputs.force == true }}
+      shell: bash
+      run: |
+        git push --force
