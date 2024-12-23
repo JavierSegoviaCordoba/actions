@@ -1,0 +1,24 @@
+name: 'Cache for GitHub Actions'
+
+description: 'Cache for GitHub Actions'
+
+inputs:
+  path:
+    description: 'Path to cache'
+    required: true
+    type: string
+  key:
+    description: 'Cache key'
+    required: true
+    type: string
+
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: 💽 Cache
+      uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4
+      with:
+        path: ${{ inputs.path }}
+        key: ${{ inputs.key }}
