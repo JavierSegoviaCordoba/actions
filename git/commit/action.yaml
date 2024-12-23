@@ -29,7 +29,7 @@ runs:
 
   steps:
     - name: ⏳ Checking inputs
-      if: ${{ (inputs.message != null || inputs.message != '') &&  inputs.amend == true }}
+      if: ${{ (inputs.message != null || inputs.message != '') &&  inputs.amend == 'true' }}
       shell: bash
       run: |
         echo "Commit message must not be provided if amend is true"
@@ -52,25 +52,25 @@ runs:
         git add .
 
     - name: 💬 git commit
-      if: ${{ inputs.amend != true }}
+      if: ${{ inputs.amend == 'false' }}
       shell: bash
       run: |
         git commit -m "${{ inputs.commit-message }}" -a
 
     - name: 💬🔨 git commit --amend
-      if: ${{ inputs.amend == true }}
+      if: ${{ inputs.amend == 'true' }}
       shell: bash
       run: |
         git commit --amend --no-edit
 
     - name: ⤴️ git push
-      if: ${{ inputs.push == true && inputs.force != true }}
+      if: ${{ inputs.push == 'true' && inputs.force != 'true' }}
       shell: bash
       run: |
         git push
 
     - name: ⤴️🔨 git push --force
-      if: ${{ inputs.push == true && inputs.force == true }}
+      if: ${{ inputs.push == 'true' && inputs.force == 'true' }}
       shell: bash
       run: |
         git push --force
