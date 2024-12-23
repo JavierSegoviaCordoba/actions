@@ -1,0 +1,40 @@
+name: 'Qodana'
+
+description: 'Action for running Qodana'
+
+inputs:
+  cache-default-branch-only:
+    default: true
+    description: 'Cache only default branch'
+    required: true
+    type: boolean
+  upload-result:
+    default: false
+    description: 'Upload Qodana results'
+    required: true
+    type: boolean
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: 🧪☁️ Run Qodana Cloud
+      if: ${{ startsWith(env.QODANA_TOKEN, 'ey') }}
+      shell: bash
+      run: echo "Qodana Cloud enabled"
+
+    - name: 🧪 Run Qodana locally
+      if: ${{ !startsWith(env.QODANA_TOKEN, 'ey') }}
+      shell: bash
+      run: echo "Qodana is running only locally"
+
+    - name: 💉🧪☁️ Code quality with Qodana Cloud
+      uses: JetBrains/qodana-action@b60a4b9259f448dd00f2ca4763db5677d69ba868 # v2024.3.4
+      with:
+        cache-default-branch-only: ${{ inputs.cache-default-branch-only == true }}
+        upload-result: ${{ inputs.upload-result == true }}
+
+    - name: ⤴️🧪 Upload Qodana results to GitHub
+      uses: JavierSegoviaCordoba/actions/github/upload/sarif@main
+      with:
+        sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
