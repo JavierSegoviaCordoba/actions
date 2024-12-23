@@ -1,0 +1,20 @@
+name: 'Setup Xcode'
+
+description: 'Action for setting up Xcode'
+
+inputs:
+  xcode-version:
+    default: 'latest-stable'
+    description: 'Xcode version'
+    required: true
+    type: string
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: 🛠️🍎 Set up Xcode
+      uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1
+      if: startsWith(matrix.os, 'macos-')
+      with:
+        xcode-version: ${{ inputs.xcode-version }}
