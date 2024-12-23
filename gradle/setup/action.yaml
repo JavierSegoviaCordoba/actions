@@ -1,0 +1,37 @@
+name: 'Setup Gradle'
+
+description: 'Action for setting up Gradle'
+
+inputs:
+  cache-enabled:
+    default: true
+    description: 'Gradle cache'
+    required: true
+    type: boolean
+  cache-cleanup:
+    default: 'on-success'
+    description: 'Cleanup Gradle home cache'
+    required: true
+    type: string
+  cache-encryption-key:
+    default: ''
+    description: 'Cache encryption key'
+    required: true
+    type: string
+  validate-wrappers:
+    default: true
+    description: 'Validate Gradle wrappers'
+    required: true
+    type: boolean
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: 🐘 Setup Gradle
+      uses: gradle/actions/setup-gradle@0bdd871935719febd78681f197cd39af5b6e16a6 # v4
+      with:
+        cache-disabled: ${{ inputs.cache-enabled == false }}
+        cache-encryption-key: ${{ inputs.cache-encryption-key }}
+        cache-cleanup: ${{ inputs.cache-cleanup }}
+        validate-wrappers: ${{ inputs.validate-wrappers }}
