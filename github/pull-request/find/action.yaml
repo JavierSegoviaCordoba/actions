@@ -1,0 +1,23 @@
+name: 'Find GitHub pull request'
+
+description: 'Action to find a GitHub pull request'
+
+inputs:
+  branch:
+    description: 'Branch name'
+    required: true
+
+outputs:
+  number:
+    description: "Pull request number"
+    value: ${{ steps.find-pull-request.outputs.number }}
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: ⤴️ Find GitHub pull request
+      id: find-pull-request
+      uses: juliangruber/find-pull-request-action@48b6133aa6c826f267ebd33aa2d29470f9d9e7d0 # v1.9.0
+      with:
+        branch: ${{ inputs.branch }}
