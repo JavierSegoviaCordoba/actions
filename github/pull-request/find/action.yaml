@@ -6,6 +6,7 @@ inputs:
   branch:
     description: 'Branch name'
     required: true
+    type: string
 
 outputs:
   number:

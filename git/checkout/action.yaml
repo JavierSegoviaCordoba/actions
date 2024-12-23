@@ -7,10 +7,12 @@ inputs:
     default: '0'
     description: 'Depth for fetching'
     required: true
+    type: string
   token:
     default: ${{ github.token }}
     description: 'GitHub token'
     required: true
+    type: string
 
 runs:
   using: "composite"
