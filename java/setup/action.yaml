@@ -1,0 +1,25 @@
+name: 'Setup Java'
+
+description: 'Action for setting up Java'
+
+inputs:
+  distribution:
+    default: 'zulu'
+    description: 'Distribution'
+    required: true
+    type: string
+  java-version:
+    default: '21'
+    description: 'Java version'
+    required: true
+    type: string
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: 🍵 Set up Java
+      uses: actions/setup-java@7a6d8a8234af8eb26422e24e3006232cccaa061b # v4.6.0
+      with:
+        distribution: ${{ inputs.distribution }}
+        java-version: ${{ inputs.java-version }}
