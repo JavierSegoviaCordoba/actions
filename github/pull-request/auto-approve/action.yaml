@@ -1,0 +1,28 @@
+name: 'Pull request auto approve'
+
+description: 'Action to auto approve a pull request'
+
+inputs:
+  github-token:
+    description: 'GitHub token'
+    required: true
+    default: ${{ github.token }}
+  pull-request-number:
+    description: 'Pull request number'
+    required: true
+    default: ${{ github.event.pull_request.number }}
+  review-message:
+    description: 'Review message'
+    required: true
+    default: 'Pull request approved automatically'
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: ✅ Pull request auto approve
+      uses: hmarr/auto-approve-action@f0939ea97e9205ef24d872e76833fa908a770363 # v4.0.0
+      with:
+        github-token: ${{ inputs.github-token }}
+        pull-request-number: ${{ inputs.pull-request-number }}
+        review-message: ${{ inputs.review-message }}
