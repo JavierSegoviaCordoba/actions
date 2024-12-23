@@ -1,0 +1,8 @@
+name: 'Build and push Docker images'
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: 🛠️ Build and push 🐳 Docker images
+      uses: docker/build-push-action@v6.9.0
