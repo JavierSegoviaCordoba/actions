@@ -1,0 +1,23 @@
+name: 'Authenticate to Google Cloud'
+
+description: 'Action for authenticating to Google Cloud'
+
+inputs:
+  project-id:
+    description: 'Google Cloud project ID'
+    required: true
+    type: string
+  workload-identity-provider:
+    description: 'Workload Identity Provider'
+    required: true
+    type: string
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: 🔵🔴🟡🟢 🔑 Authenticate to Google Cloud
+      uses: google-github-actions/auth@v2.1.7
+      with:
+        project_id: ${{ inputs.project-id }}
+        workload_identity_provider: ${{ inputs.workload-identity-provider }}
