@@ -1,0 +1,19 @@
+name: 'Google Cloud Setup'
+
+description: 'Action for setting up Google Cloud'
+
+inputs:
+  version:
+    default: 'latest'
+    description: 'A string representing the version or version constraint of the Cloud SDK (`gcloud`) to install (e.g. `"290.0.1"` or `">= 197.0.1"`). The default value is `"latest"`, which will always download and install the latest available Cloud SDK version.'
+    required: true
+    type: string
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: 🔵🔴🟡🟢 ☁️ Setup Google Cloud
+      uses: google-github-actions/setup-gcloud@v2.1.2
+      with:
+        version: ${{ inputs.version }}
