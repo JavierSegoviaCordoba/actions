@@ -1,4 +1,5 @@
 name: Auto Approve PR
+
 on: pull_request
 
 jobs:
