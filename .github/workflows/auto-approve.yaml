@@ -1,0 +1,13 @@
+name: Auto Approve PR
+on: pull_request
+
+jobs:
+  auto-approve:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+
+    steps:
+      - name: ✅ Auto Approve
+        uses: JavierSegoviaCordoba/Actions/github/pull-request/auto-approve@main
