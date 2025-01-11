@@ -55,7 +55,7 @@ runs:
       if: ${{ inputs.amend == 'false' }}
       shell: bash
       run: |
-        git commit -m "${{ inputs.commit-message }}" -a
+        git commit -m "${{ inputs.message }}" -a
 
     - name: 💬🔨 git commit --amend
       if: ${{ inputs.amend == 'true' }}
