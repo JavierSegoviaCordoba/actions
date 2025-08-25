@@ -14,6 +14,6 @@ runs:
 
   steps:
     - name: 🔵🔴🟡🟢 ☁️ Setup Google Cloud
-      uses: google-github-actions/setup-gcloud@4111bea454dcfe1b4c2db3753685db043571e112 # v2.1.3
+      uses: google-github-actions/setup-gcloud@26f734c2779b00b7dda794207734c511110a4368 # v3.0.0
       with:
         version: ${{ inputs.version }}
