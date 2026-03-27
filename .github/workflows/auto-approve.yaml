@@ -11,6 +11,6 @@ jobs:
 
     steps:
       - name: ✅ Auto Approve
-        uses: JavierSegoviaCordoba/Actions/github/pull-request/auto-approve@31dba23ba5922a4c61bfc31993ff6280c861ec22 # main
+        uses: JavierSegoviaCordoba/Actions/github/pull-request/auto-approve@26f6391e1f01d0edf49d9cf298a78803d6f5290d # main
         with:
           github-token: '${{ secrets.TOKEN_GITHUB_ACTION }}'
