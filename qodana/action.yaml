@@ -35,6 +35,6 @@ runs:
         upload-result: ${{ inputs.upload-result == true }}
 
     - name: ⤴️🧪 Upload Qodana results to GitHub
-      uses: JavierSegoviaCordoba/actions/github/upload/sarif@0ebfbcef13e7b87d8af7dd38f6bc575316adbfab # main
+      uses: JavierSegoviaCordoba/actions/github/upload/sarif@31dba23ba5922a4c61bfc31993ff6280c861ec22 # main
       with:
         sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
