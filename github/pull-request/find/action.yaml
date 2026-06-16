@@ -19,6 +19,6 @@ runs:
   steps:
     - name: ⤴️ Find GitHub pull request
       id: find-pull-request
-      uses: juliangruber/find-pull-request-action@33d46d4ff90884bb23aaead16044125daaf733d8 # v1.11.0
+      uses: juliangruber/find-pull-request-action@92b38d91ef26fd0f47374257f50e78432359a45f # v1.11.1
       with:
         branch: ${{ inputs.branch }}
